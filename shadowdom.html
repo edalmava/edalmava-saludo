@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+  <!--<link rel="import" href="edalmava-saludo.html" />-->
+</head>
+<body>
+  <h1 style="color: blue;">Hola Mundo Web Components - Shadow DOM</h1>
+  
+  <div id="elem"></div>
+  	
+  <!-- Uso mi Web Component -->
+  <template id="templatesimple">
+    <style>
+	  h1 { color: red; }
+	  p  { background-color: #DDD; }
+	</style>
+	<h1>Ciudades del mundo</h1>
+	<template id="templateciudades">
+	<p></p>
+	</template>
+  </template>
+
+  <script>
+	//var template = document.querySelector('template').content;
+    //var clone = template.cloneNode(true);
+    //document.body.appendChild(clone);
+	
+	var ciudades = ["Madrid", "Barcelona", "Valencia"];
+
+    var template = document.querySelector('#templatesimple').content;
+    var p = template.querySelector("#templateciudades").content.querySelector("p");
+    ciudades.forEach(function(ciudad) {
+	  var newP = p.cloneNode(true);
+	  newP.textContent = ciudad;
+	  template.appendChild(newP);
+    });
+    var clone = document.importNode(template, true);
+    //document.body.appendChild(clone);
+	//accedo a un elemento
+	var elem = document.querySelector("#elem");
+	//creo el shadow root
+	var shadow = elem.createShadowRoot();
+	//le añado el clon del template
+ 	shadow.appendChild(clone);
+  </script>
+</body>
+</html>

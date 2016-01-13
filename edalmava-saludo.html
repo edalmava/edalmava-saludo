@@ -1,0 +1,17 @@
+<script>
+	//prototipo de elemento, a partir del elemento base
+    var prototipo = Object.create(HTMLElement.prototype);
+
+    // manejador del evento createdCallback,
+    //ocurre cuando se instancia el componente
+    prototipo.createdCallback = function() {
+      console.log("Creado");
+      //cambio el texto que hay en este elemento
+      this.textContent = "¡Hola Mundo!";
+    };
+
+    //Registro el componente "edalmava-saludo"
+    document.registerElement('edalmava-saludo', {
+      prototype: prototipo
+    });
+</script>

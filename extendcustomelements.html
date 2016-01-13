@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+  <!--<link rel="import" href="edalmava-saludo.html" />-->
+</head>
+<body>
+  <h1>Hola Mundo Web Components - Extend Custom Element</h1>
+  	
+  <!-- Uso mi Web Component -->
+  <button is="btn-edalmava"></button>
+
+  <script>
+	//prototipo de elemento, a partir del elemento base
+    var prototipo = Object.create(HTMLButtonElement.prototype);
+
+    // manejador del evento createdCallback,
+    //ocurre cuando se instancia el componente
+    prototipo.createdCallback = function() {      
+      //cambio el texto que hay en este elemento
+      this.textContent = "¡Hola Mundo!";
+    };
+
+    //Registro el componente "edalmava-saludo"
+    document.registerElement('btn-edalmava', {
+      prototype: prototipo,
+	  extends: 'button'
+    });
+  </script>
+</body>
+</html>
